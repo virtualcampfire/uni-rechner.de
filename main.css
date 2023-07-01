@@ -1,0 +1,24 @@
+body{
+    padding: 0px;
+    margin: 0px;
+}
+.container{
+    display: flex;
+    justify-content: center;
+}
+input{
+    width: 200px;
+}
+button{
+    width: 200px;
+}
+table{
+    width: 600px;
+}
+td{
+    text-align: center;
+}
+.element{
+    border-color: black;
+    border-style: solid;
+}

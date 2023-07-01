@@ -3,157 +3,35 @@
 <head>
     <title>Notenrechner</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        #container {
-            margin: 20px auto;
-            width: 400px;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-        }
-
-        .element {
-            margin-bottom: 10px;
-        }
-
-        input[type="number"],
-        input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .module {
-            margin-top: 5px;
-        }
-
-        button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        #result {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        #chartContainer {
-            width: 400px;
-            height: 400px;
-            margin: 20px auto;
-        }
-    </style>
-    <script>
-        function calculateAverage() {
-            var elements = document.getElementsByClassName('element');
-            var totalPoints = 0;
-            var totalWeight = 0;
-
-            for (var i = 0; i < elements.length; i++) {
-                var noteInput = elements[i].getElementsByClassName('note')[0];
-                var scoreInput = elements[i].getElementsByClassName('score')[0];
-                
-                var note = parseFloat(noteInput.value);
-                var score = parseFloat(scoreInput.value);
-
-                if (!isNaN(note) && !isNaN(score)) {
-                    totalPoints += note * score;
-                    totalWeight += score;
-                }
-            }
-
-            var average = totalPoints / totalWeight;
-            document.getElementById('result').innerHTML = "Durchschnittsnote: " + average.toFixed(2);
-
-            var cpPercentage = (totalWeight / 180) * 100;
-            createChart(cpPercentage);
-        }
-
-        function addElement() {
-            var container = document.getElementById('container');
-
-            var element = document.createElement('div');
-            element.className = 'element';
-
-            var noteInput = document.createElement('input');
-            noteInput.type = 'number';
-            noteInput.className = 'note';
-            noteInput.placeholder = 'Note (0-15)';
-
-            var scoreInput = document.createElement('input');
-            scoreInput.type = 'number';
-            scoreInput.className = 'score';
-            scoreInput.placeholder = 'CP';
-
-            var moduleInput = document.createElement('input');
-            moduleInput.type = 'text';
-            moduleInput.className = 'module';
-            moduleInput.placeholder = 'Modulbezeichnung';
-
-
-            element.appendChild(noteInput);
-            element.appendChild(scoreInput);
-            element.appendChild(moduleInput);
-            element.appendChild(document.createElement('br'));
-            element.appendChild(document.createElement('br'));
-
-            container.appendChild(element);
-        }
-
-        function createChart(cpPercentage) {
-            var ctx = document.getElementById('chart').getContext('2d');
-            var chart = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Verwendete CPs', 'Übrige CPs'],
-                    datasets: [{
-                        data: [cpPercentage, 100 - cpPercentage],
-                        backgroundColor: ['#FF6384', '#36A2EB'],
-                        hoverBackgroundColor: ['#FF6384', '#36A2EB'],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
-        }
-    </script>
+    <link rel="stylesheet" href="main.css">
+    <script src="main.js"></script>
 </head>
 <body>
-    <h1>Notenrechner</h1>
-    <div id="container">
-        <div class="element">
-            <input type="number" class="note" placeholder="Note (0-15)">
-            <input type="number" class="score" placeholder="CP">
-            <input type="text" class="module" placeholder="Modulbezeichnung">
+    <div class="container">
+        <h1>Notenrechner</h1>
+    </div>
+    <div class="container">
+            <input type="number" id="note" placeholder="Note (0-15)">
+            <input type="number" id="cp" placeholder="CP">
+            <input type="text" id="module" placeholder="Modulbezeichnung">
+    </div>
+    <br>
+    <div class="container">
+        <div class="button-container">
+            <button onclick="addElement()">Neues Element hinzufügen</button>
+            <button onclick="calculateAverage()">Durchschnitt berechnen</button>
         </div>
     </div>
-    <button onclick="addElement()">Neues Element hinzufügen</button>
     <br>
-    <button onclick="calculateAverage()">Durchschnitt berechnen</button>
+    <div class="container">
+        <table id="element-container">
+            <tr>
+                <th>Note</th>
+                <th>CP</th>
+                <th>Modul</th>
+            </tr> 
+        </table>
+    </div>
     <p id="result"></p>
     <div id="chartContainer">
         <canvas id="chart"></canvas>
