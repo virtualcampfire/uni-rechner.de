@@ -1,6 +1,8 @@
 body{
     padding: 0px;
     margin: 0px;
+    color: #eaeaea;
+    background-color: #123d4b;
 }
 .container{
     display: flex;
@@ -21,4 +23,12 @@ td{
 .element{
     border-color: black;
     border-style: solid;
+}
+.input{
+    border-style: solid;
+    border-radius: 10px;
+}
+.buttons{
+    border-style: solid;
+    border-radius: 10px;
 }
