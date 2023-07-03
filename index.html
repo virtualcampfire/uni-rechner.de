@@ -8,18 +8,18 @@
 </head>
 <body>
     <div class="container">
-        <h1>Notenrechner</h1>
+        <h1>Uni-Rechner</h1>
     </div>
     <div class="container">
-            <input type="number" id="note" placeholder="Note (0-15)">
-            <input type="number" id="cp" placeholder="CP">
-            <input type="text" id="module" placeholder="Modulbezeichnung">
+            <input class="input" type="number" id="note" placeholder="Note (0-15)">
+            <input class="input" type="number" id="cp" placeholder=" Credit Points">
+            <input class="input" type="text" id="module" placeholder="Modulbezeichnung">
     </div>
     <br>
     <div class="container">
         <div class="button-container">
-            <button onclick="addElement()">Neues Element hinzufügen</button>
-            <button onclick="calculateAverage()">Durchschnitt berechnen</button>
+            <button class="buttons" onclick="addElement()">Neues Element hinzufügen</button>
+            <button class="buttons" onclick="calculateAverage()">Durchschnitt berechnen</button>
         </div>
     </div>
     <br>
@@ -27,7 +27,7 @@
         <table id="element-container">
             <tr>
                 <th>Note</th>
-                <th>CP</th>
+                <th>Credit Points</th>
                 <th>Modul</th>
             </tr> 
         </table>

@@ -13,7 +13,7 @@ function calculateAverage() {
     }
     let average = totalPoints / totalWeight;
     document.getElementById('result').innerHTML = "Durchschnittsnote: " + average.toFixed(2);
-    let cpPercentage = (totalWeight / 180) * 100;
+    let cpPercentage = (totalWeight / 180) * 180;
     createChart(cpPercentage);
 }
 
@@ -36,7 +36,7 @@ function createChart(cpPercentage) {
     var chart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ['Verwendete CPs', 'Übrige CPs'],
+            labels: ['Verwendete Credit Points', 'Übrige Credit Points'],
             datasets: [{
                 data: [cpPercentage, 180 - cpPercentage],
                 backgroundColor: ['#FF6384', '#36A2EB'],
